@@ -1,0 +1,43 @@
+package com.mendoza.people.mngt.appdata;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.mendoza.people.mngt.appdata.entity.Person;
+import com.mendoza.people.mngt.appdata.service.PeopleManagementService;
+
+@SpringBootApplication
+public class PeopleMngtSpringBootDataAppApplication implements CommandLineRunner {
+
+	@Autowired
+	private PeopleManagementService service;
+	
+	public static void main(String[] args) {
+		SpringApplication.run(PeopleMngtSpringBootDataAppApplication.class, args);
+	}
+
+	@Override
+	public void run(String... args) throws Exception {
+		// TODO Auto-generated method stub
+		//getPersonByLastName("mendoza");
+		getPersonByFirstAndLastName("roel","mendoza");
+		
+	}
+
+	public void getPersonByLastName(String lastname) {
+		List<Person> lpersons = service.getPersonsByLastName(lastname);
+		lpersons.forEach(p -> System.out.println(p.getLastname()+", "+p.getFirstname()));
+	}
+	
+	public void getPersonByFirstAndLastName(String firstname, String lastname) {
+		List<Person> lpersons = service.getPersonsByFirstAndLastName(firstname, lastname);
+		lpersons.forEach(p -> System.out.println(p.getLastname()+", "+p.getFirstname()));
+	}
+
+}

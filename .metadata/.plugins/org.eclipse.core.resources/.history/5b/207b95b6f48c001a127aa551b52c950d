@@ -1,0 +1,5 @@
+package com.mendoza.people.mngt.app.entity;
+
+public class Person {
+
+}

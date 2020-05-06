@@ -1,0 +1,20 @@
+package com.mendoza.people.mngt.app.service;
+
+import org.springframework.stereotype.Service;
+
+import com.mendoza.people.mngt.app.dao.PeopleManagementDAO;
+import com.mendoza.people.mngt.app.entity.Person;
+
+@Service
+public class PeopleManagementService {
+	
+	
+	private PeopleManagementDAO peopledao;
+	
+	public Person createPerson(Person p) {
+		return peopledao.save(p);
+	}
+	
+	
+
+}

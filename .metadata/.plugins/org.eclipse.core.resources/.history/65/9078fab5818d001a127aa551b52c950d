@@ -1,0 +1,27 @@
+package com.mendoza.people.mngt.appdata.service.copy;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.mendoza.people.mngt.appdata.dao.PeopleManagementDAO;
+import com.mendoza.people.mngt.appdata.entity.Person;
+
+@Service
+public class PeopleManagementService {
+	
+	
+	@Autowired
+	private PeopleManagementDAO peopledao;
+
+	public List<Person> getPersonsByLastName(String lastname) {
+		// TODO Auto-generated method stub
+		return peopledao.findBylastname(lastname);
+	}
+	
+
+	
+	
+}

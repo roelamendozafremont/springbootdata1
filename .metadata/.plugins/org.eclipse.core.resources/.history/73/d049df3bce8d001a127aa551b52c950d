@@ -1,0 +1,158 @@
+package com.mendoza.people.mngt.appquery.entity;
+
+import java.util.Date;
+import java.util.Random;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.DynamicUpdate;
+
+@Entity
+@Table(name="persontable")
+@DynamicUpdate
+
+@NamedQueries(value = { 
+		@NamedQuery(name = "Person.findLikefirstname", query = "SELECT p FROM Person p WHERE p.firstname LIKE ?1"),
+		@NamedQuery(name = "Person.findLikefirstAndlastname", query = "SELECT p FROM Person p WHERE p.firstname LIKE ?1 AND p.lastname LIKE ?2") 		
+		})
+
+@NamedNativeQueries(value = { 
+		@NamedNativeQuery(name = "Person.findLikefirstname2", query = "SELECT * FROM persontable WHERE pfirstname LIKE ?1",resultClass=Person.class),
+		@NamedNativeQuery(name = "Person.findLikefirstAndlastname2", query = "SELECT * FROM persontable WHERE pfirstname LIKE ?1 AND plastname LIKE ?2",resultClass=Person.class) 		
+		})
+
+public class Person {
+	
+
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="pid")
+	private int id;
+	
+	@Column(name="pfirstname",length=60,nullable=false)
+	private String firstname;
+	
+	@Column(name="plastname",length=60,nullable=false)
+	private String lastname;
+	
+	@Column(name="pmothername",length=60,nullable=true)
+	private String mothername;
+	
+	@Column(name="psex",length=60,nullable=true)
+	private String sex;	
+	
+	@Column(name="page",length=60,nullable=true)
+	private int age;
+	
+	public String getMothername() {
+		return mothername;
+	}
+
+
+	public void setMothername(String mothername) {
+		this.mothername = mothername;
+	}
+
+
+	public String getSex() {
+		return sex;
+	}
+
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+
+	public int getAge() {
+		return age;
+	}
+
+
+	public Person(String firstname, String lastname, String sex, int age, String emailid, String fathername, String mothername) {
+		super();
+		this.setId(new Random().nextInt(1000));
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.mothername = mothername;
+		this.sex = sex;
+		this.age = age;
+		this.fathername = fathername;
+		this.emailid = emailid;
+		this.creationdate = new Date();
+	}
+
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+
+	public String getFathername() {
+		return fathername;
+	}
+
+
+	public void setFathername(String fathername) {
+		this.fathername = fathername;
+	}
+	@Column(name="pfathername",length=60,nullable=true)
+	private String fathername;		
+	
+	
+	@Id
+	@Column(name="pemailid",length=60,unique=true)
+	private String emailid;
+	
+	@Column(name="pcreationdate")
+	private Date creationdate;
+	
+	
+	
+	public Person() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getId() {
+		return id;
+	}
+ 	public void setId(int id) {
+ 		this.id = id;
+ 	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public String getEmailid() {
+		return emailid;
+	}
+	public void setEmailid(String emailid) {
+		this.emailid = emailid;
+	}
+	public Date getCreationdate() {
+		return creationdate;
+	}
+	public void setCreationdate(Date creationdate) {
+		this.creationdate = creationdate;
+	}
+
+	
+	
+}

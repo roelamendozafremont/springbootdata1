@@ -1,0 +1,5 @@
+package com.mendoza.people.mngt.app.service;
+
+public class PeopleManagementService {
+
+}

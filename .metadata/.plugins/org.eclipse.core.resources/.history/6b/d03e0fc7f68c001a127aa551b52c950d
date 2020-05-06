@@ -1,0 +1,11 @@
+package com.mendoza.people.mngt.app.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class PeopleManagementService {
+	
+	
+	
+
+}
